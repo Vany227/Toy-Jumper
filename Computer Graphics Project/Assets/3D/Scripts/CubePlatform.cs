@@ -29,10 +29,14 @@ public class CubePlatform : MonoBehaviour
         meshRenderer.material.color = highlightedColor;
     }
 
+    public void unhighlight()
+    {
+        meshRenderer.material.color = defaultColor;
+    }
+
     public Boolean hasCube()
     {
         if (cube == null) return false;
         return true;
     }
-
 }
