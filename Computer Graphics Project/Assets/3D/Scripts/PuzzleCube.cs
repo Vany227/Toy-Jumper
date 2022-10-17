@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class PuzzleCube : MonoBehaviour
     private Color defaultColor;
     private MeshRenderer meshRenderer;
     private PlatformPuzzle platformPuzzle;
-    private CubePlatform cubePlatform;
+    public CubePlatform cubePlatform;
 
     static private GameObject selectedCube = null;
 
@@ -29,12 +30,14 @@ public class PuzzleCube : MonoBehaviour
         checkIfSelected();
     }
 
-    private void checkIfSelected()
+    public Boolean checkIfSelected()
     {
         if (this.gameObject != selectedCube)
         {
             meshRenderer.material.color = defaultColor;
+            return false;
         }
+        else return true;
     }
 
     private void OnMouseDown()
@@ -42,5 +45,13 @@ public class PuzzleCube : MonoBehaviour
         meshRenderer.material.color = selectedColor;
         selectedCube = this.gameObject;
         platformPuzzle.highlightAdjacentPlatforms(cubePlatform);
+    }
+
+    public void moveCube(float x, float y, float z, CubePlatform platform)
+    {
+        selectedCube.transform.position = new Vector3(x, y, z);
+        transform.parent = platform.transform;
+        cubePlatform = this.GetComponentInParent<CubePlatform>();
+        meshRenderer.material.color = defaultColor;
     }
 }

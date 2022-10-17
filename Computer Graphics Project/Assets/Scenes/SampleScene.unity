@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -308,6 +308,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1401376176020112397, guid: 6599d8cc61ee22046abf1dc114e3c82f, type: 3}
+      propertyPath: m_TagString
+      value: CubePlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401376176973373484, guid: 6599d8cc61ee22046abf1dc114e3c82f, type: 3}
+      propertyPath: m_TagString
+      value: CubePlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401376177156508974, guid: 6599d8cc61ee22046abf1dc114e3c82f, type: 3}
+      propertyPath: m_TagString
+      value: CubePlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401376177319098050, guid: 6599d8cc61ee22046abf1dc114e3c82f, type: 3}
+      propertyPath: m_TagString
+      value: CubePlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401376177818138074, guid: 6599d8cc61ee22046abf1dc114e3c82f, type: 3}
+      propertyPath: m_TagString
+      value: CubePlatform
+      objectReference: {fileID: 0}
     - target: {fileID: 6372173336899516776, guid: 6599d8cc61ee22046abf1dc114e3c82f, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -355,6 +375,26 @@ PrefabInstance:
     - target: {fileID: 6372173336899516778, guid: 6599d8cc61ee22046abf1dc114e3c82f, type: 3}
       propertyPath: m_Name
       value: PlatformPuzzle (3x3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372173336899516778, guid: 6599d8cc61ee22046abf1dc114e3c82f, type: 3}
+      propertyPath: m_TagString
+      value: PlatformPuzzle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372173337082640155, guid: 6599d8cc61ee22046abf1dc114e3c82f, type: 3}
+      propertyPath: m_TagString
+      value: CubePlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372173337369402871, guid: 6599d8cc61ee22046abf1dc114e3c82f, type: 3}
+      propertyPath: m_TagString
+      value: CubePlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372173338126897948, guid: 6599d8cc61ee22046abf1dc114e3c82f, type: 3}
+      propertyPath: m_TagString
+      value: CubePlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372173338942533051, guid: 6599d8cc61ee22046abf1dc114e3c82f, type: 3}
+      propertyPath: m_TagString
+      value: CubePlatform
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6599d8cc61ee22046abf1dc114e3c82f, type: 3}
@@ -413,6 +453,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlatformPuzzle(1x2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4647339280844546310, guid: 0f8c612b1046ee84b95148ebe0f524e8, type: 3}
+      propertyPath: m_TagString
+      value: CubePlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647339280954141157, guid: 0f8c612b1046ee84b95148ebe0f524e8, type: 3}
+      propertyPath: m_TagString
+      value: CubePlatform
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f8c612b1046ee84b95148ebe0f524e8, type: 3}
 --- !u!1001 &5303337105142934306
@@ -422,6 +470,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5303337104364751794, guid: 19867ddccd1af9941b396f70b7a2af5c, type: 3}
+      propertyPath: m_TagString
+      value: CubePlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 5303337105163416853, guid: 19867ddccd1af9941b396f70b7a2af5c, type: 3}
+      propertyPath: m_TagString
+      value: CubePlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 5303337105914821629, guid: 19867ddccd1af9941b396f70b7a2af5c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5303337106199515408, guid: 19867ddccd1af9941b396f70b7a2af5c, type: 3}
+      propertyPath: puzzleCube
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5303337106199515410, guid: 19867ddccd1af9941b396f70b7a2af5c, type: 3}
+      propertyPath: m_TagString
+      value: CubePlatform
+      objectReference: {fileID: 0}
     - target: {fileID: 5303337106384445281, guid: 19867ddccd1af9941b396f70b7a2af5c, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -469,6 +537,10 @@ PrefabInstance:
     - target: {fileID: 5303337106384445283, guid: 19867ddccd1af9941b396f70b7a2af5c, type: 3}
       propertyPath: m_Name
       value: PlatformPuzzle (2x2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5303337106384445283, guid: 19867ddccd1af9941b396f70b7a2af5c, type: 3}
+      propertyPath: m_TagString
+      value: PlatformPuzzle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19867ddccd1af9941b396f70b7a2af5c, type: 3}

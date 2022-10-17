@@ -52,6 +52,29 @@ public class PlatformPuzzle : MonoBehaviour
         }
     }
 
+    public void checkForSelectedCube(CubePlatform platform)
+    {
+        currentPuzzle = this.gameObject;
+        unhighlightPuzzle();
+        for (int r = 0; r < platforms.Count; r++)
+        {
+            for (int c = 0; c < platforms[r].row.Count; c++)
+            {
+                if (platforms[r].row[c].Equals(platform))
+                {
+                    if (r - 1 >= 0 && platforms[r - 1].row[c].hasCube() && platforms[r - 1].row[c].cube.checkIfSelected()) // down
+                        platforms[r - 1].row[c].cube.moveCube(platform.transform.position.x, platform.transform.position.y + .5f, platform.transform.position.z, platform);
+                    if (r + 1 < platforms.Count && platforms[r + 1].row[c].hasCube() && platforms[r + 1].row[c].cube.checkIfSelected()) //up
+                        platforms[r + 1].row[c].cube.moveCube(platform.transform.position.x, platform.transform.position.y + .5f, platform.transform.position.z, platform); 
+                    if (c - 1 >= 0 && platforms[r].row[c - 1].hasCube() && platforms[r].row[c - 1].cube.checkIfSelected()) //right
+                        platforms[r].row[c - 1].cube.moveCube(platform.transform.position.x, platform.transform.position.y + .5f, platform.transform.position.z, platform); 
+                    if (c + 1 < platforms[r].row.Count && platforms[r].row[c + 1].hasCube() && platforms[r].row[c + 1].cube.checkIfSelected()) //left
+                        platforms[r].row[c + 1].cube.moveCube(platform.transform.position.x, platform.transform.position.y + .5f, platform.transform.position.z, platform);
+                }
+            }
+        }
+    }
+
     public void unhighlightPuzzle()
     {
         foreach(PlatformRow row in platforms)
