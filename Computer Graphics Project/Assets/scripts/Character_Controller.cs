@@ -54,14 +54,12 @@ public class Character_Controller : MonoBehaviour
         {
             
             onGround = true;
-            Debug.Log(onGround);
         }
 
         if (collision.gameObject.name == "walls")
         {
             onWall = true;
             wallDirection = dirX;
-            Debug.Log(wallDirection);
         }
     }
 
