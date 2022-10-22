@@ -12,8 +12,11 @@ public class PuzzleCube : MonoBehaviour
     private MeshRenderer meshRenderer;
     private PlatformPuzzle platformPuzzle;
     public CubePlatform cubePlatform;
-
+    private Boolean canMove;
+    private Vector3 targetPosition;
+    static private Boolean canClick = true;
     static private GameObject selectedCube = null;
+    private float moveSpeed = .03f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +31,19 @@ public class PuzzleCube : MonoBehaviour
     void Update()
     {
         checkIfSelected();
+        if (canMove)
+        {
+            selectedCube.transform.position = Vector3.MoveTowards(selectedCube.transform.position, targetPosition, moveSpeed);
+            if (selectedCube.transform.position == targetPosition)
+            {
+                canMove = false;
+                canClick = true;
+            }
+            else
+            {
+                canClick = false;
+            }
+        }
     }
 
     public Boolean checkIfSelected()
@@ -42,14 +58,18 @@ public class PuzzleCube : MonoBehaviour
 
     private void OnMouseDown()
     {
-        meshRenderer.material.color = selectedColor;
-        selectedCube = this.gameObject;
-        platformPuzzle.highlightAdjacentPlatforms(cubePlatform);
+        if (canClick)
+        {
+            meshRenderer.material.color = selectedColor;
+            selectedCube = this.gameObject;
+            platformPuzzle.highlightAdjacentPlatforms(cubePlatform);
+        }
     }
 
     public void moveCube(float x, float y, float z, CubePlatform platform)
     {
-        selectedCube.transform.position = new Vector3(x, y, z);
+        targetPosition = new Vector3(x, y, z);
+        canMove = true;
         transform.parent = platform.transform;
         cubePlatform = this.GetComponentInParent<CubePlatform>();
         meshRenderer.material.color = defaultColor;
