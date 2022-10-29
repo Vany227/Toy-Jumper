@@ -16,17 +16,16 @@ public class PlatformPuzzle : MonoBehaviour
     List<PlatformRow> platforms = new List<PlatformRow>();
 
     static private GameObject currentPuzzle;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
+    [SerializeField]
+    private float RotationSpeed = 1.5f;
+
 
     // Update is called once per frame
     void Update()
     {
         if (this.gameObject != currentPuzzle) unhighlightPuzzle();
+        if (Input.GetMouseButton(0)) transform.Rotate(0, (Input.GetAxis("Mouse X") * -RotationSpeed), 0, Space.World);
     }
 
     /// <summary>
