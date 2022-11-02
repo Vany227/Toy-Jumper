@@ -17,6 +17,8 @@ public class PuzzleCube : MonoBehaviour
     static private Boolean canClick = true;
     static private GameObject selectedCube = null;
     private float moveSpeed = .03f;
+    public AudioClip woodSlideSound;
+    private AudioSource blockAudio;
 
     // Start is called before the first frame update
     void Start()
@@ -25,15 +27,25 @@ public class PuzzleCube : MonoBehaviour
         defaultColor = meshRenderer.material.color;
         cubePlatform = this.GetComponentInParent<CubePlatform>();
         platformPuzzle = cubePlatform.GetComponentInParent<PlatformPuzzle>();
+        blockAudio = GetComponent<AudioSource>();
+        woodSlideSound = Resources.Load<AudioClip>("Audio/SlideSound");
     }
 
     // Update is called once per frame
     void Update()
     {
         checkIfSelected();
+        cubeMovement();
+        
+    }
+
+    void cubeMovement()
+    {
+        
         if (canMove)
         {
             selectedCube.transform.position = Vector3.MoveTowards(selectedCube.transform.position, targetPosition, moveSpeed);
+            
             if (selectedCube.transform.position == targetPosition)
             {
                 canMove = false;
@@ -73,5 +85,6 @@ public class PuzzleCube : MonoBehaviour
         transform.parent = platform.transform;
         cubePlatform = this.GetComponentInParent<CubePlatform>();
         meshRenderer.material.color = defaultColor;
+        //blockAudio.PlayOneShot(woodSlideSound, 1.0f);
     }
 }
