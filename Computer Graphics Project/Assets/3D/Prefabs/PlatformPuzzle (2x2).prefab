@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5303337106384445281}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5303337104364751798
 MeshFilter:
@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31e5d2a8802bafa4ca9366eb6842ce60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cube: {fileID: 0}
 --- !u!1 &5303337105163416853
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +144,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5303337106384445281}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5303337105163416862
 MeshFilter:
@@ -220,6 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31e5d2a8802bafa4ca9366eb6842ce60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cube: {fileID: 0}
 --- !u!1 &5303337105914821630
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,7 +255,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5303337106384445281}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5303337105914821570
 MeshFilter:
@@ -330,6 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31e5d2a8802bafa4ca9366eb6842ce60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cube: {fileID: 0}
 --- !u!1 &5303337106199515410
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +367,7 @@ Transform:
   m_Children:
   - {fileID: 5303337106235696910}
   m_Father: {fileID: 5303337106384445281}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5303337106199515415
 MeshFilter:
@@ -441,6 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31e5d2a8802bafa4ca9366eb6842ce60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cube: {fileID: 0}
 --- !u!1 &5303337106235696905
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,6 +556,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedColor: {r: 0, g: 1, b: 1, a: 1}
+  cubePlatform: {fileID: 0}
+  woodSlideSound: {fileID: 0}
 --- !u!1 &5303337106384445283
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,10 +583,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5303337106384445283}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1184224678567376803}
   - {fileID: 5303337105914821571}
   - {fileID: 5303337104364751799}
   - {fileID: 5303337106199515411}
@@ -607,3 +614,35 @@ MonoBehaviour:
   - row:
     - {fileID: 5303337106199515408}
     - {fileID: 5303337105163416859}
+  RotationSpeed: 1.5
+--- !u!1 &6040413881022779582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1184224678567376803}
+  m_Layer: 0
+  m_Name: Pivot Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1184224678567376803
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6040413881022779582}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.625, y: 0, z: 0.625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5303337106384445281}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

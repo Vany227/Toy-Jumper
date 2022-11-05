@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [System.Serializable]
 public class PlatformRow
@@ -20,12 +21,25 @@ public class PlatformPuzzle : MonoBehaviour
     [SerializeField]
     private float RotationSpeed = 1.5f;
 
+    private Vector3 pivot;
+
+    private void Start()
+    {
+        pivot = transform.GetChild(0).transform.position;
+        Vector3 offset = transform.position - pivot;
+        foreach (Transform child in transform)
+            child.transform.position += offset;
+        transform.position = pivot;
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (this.gameObject != currentPuzzle) unhighlightPuzzle();
-        if (Input.GetMouseButton(0)) transform.Rotate(0, (Input.GetAxis("Mouse X") * -RotationSpeed), 0, Space.World);
+        if (Input.GetMouseButton(0))
+        {
+            transform.Rotate(0, (Input.GetAxis("Mouse X") * -RotationSpeed), 0, Space.World);
+        }
     }
 
     /// <summary>

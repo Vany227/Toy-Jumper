@@ -11,6 +11,11 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private int maxY = 8;
 
+    private void Start()
+    {
+        transform.LookAt(puzzle.transform);
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
