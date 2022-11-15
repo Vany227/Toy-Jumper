@@ -76,13 +76,13 @@ public class PlatformPuzzle : MonoBehaviour
                 if (platforms[r].row[c].Equals(platform))
                 {
                     if (r - 1 >= 0 && platforms[r - 1].row[c].hasCube() && platforms[r - 1].row[c].cube.checkIfSelected()) // down
-                        platforms[r - 1].row[c].cube.moveCube(platform.transform.position.x, platform.transform.position.y + .5f, platform.transform.position.z, platform);
+                        platforms[r - 1].row[c].cube.moveCube(platform.transform.position.x, platform.transform.position.y + .35f, platform.transform.position.z, platform);
                     if (r + 1 < platforms.Count && platforms[r + 1].row[c].hasCube() && platforms[r + 1].row[c].cube.checkIfSelected()) //up
-                        platforms[r + 1].row[c].cube.moveCube(platform.transform.position.x, platform.transform.position.y + .5f, platform.transform.position.z, platform); 
+                        platforms[r + 1].row[c].cube.moveCube(platform.transform.position.x, platform.transform.position.y + .35f, platform.transform.position.z, platform); 
                     if (c - 1 >= 0 && platforms[r].row[c - 1].hasCube() && platforms[r].row[c - 1].cube.checkIfSelected()) //right
-                        platforms[r].row[c - 1].cube.moveCube(platform.transform.position.x, platform.transform.position.y + .5f, platform.transform.position.z, platform); 
+                        platforms[r].row[c - 1].cube.moveCube(platform.transform.position.x, platform.transform.position.y + .35f, platform.transform.position.z, platform); 
                     if (c + 1 < platforms[r].row.Count && platforms[r].row[c + 1].hasCube() && platforms[r].row[c + 1].cube.checkIfSelected()) //left
-                        platforms[r].row[c + 1].cube.moveCube(platform.transform.position.x, platform.transform.position.y + .5f, platform.transform.position.z, platform);
+                        platforms[r].row[c + 1].cube.moveCube(platform.transform.position.x, platform.transform.position.y + .35f, platform.transform.position.z, platform);
                 }
             }
         }

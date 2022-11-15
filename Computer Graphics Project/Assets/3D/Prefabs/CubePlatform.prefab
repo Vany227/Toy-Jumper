@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31e5d2a8802bafa4ca9366eb6842ce60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cube: {fileID: 0}
 --- !u!1001 &2224862252978466787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -118,6 +119,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8938259188106279022}
     m_Modifications:
+    - target: {fileID: 7127895501606929072, guid: 985d4a3ec76e13a42bd31774f9ce5cb6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 261fc6ba388fdea42b200193b2187175, type: 2}
     - target: {fileID: 7127895501606929074, guid: 985d4a3ec76e13a42bd31774f9ce5cb6, type: 3}
       propertyPath: m_Name
       value: PuzzleCube
@@ -127,12 +132,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7127895501606929086, guid: 985d4a3ec76e13a42bd31774f9ce5cb6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7127895501606929086, guid: 985d4a3ec76e13a42bd31774f9ce5cb6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7127895501606929086, guid: 985d4a3ec76e13a42bd31774f9ce5cb6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 7127895501606929086, guid: 985d4a3ec76e13a42bd31774f9ce5cb6, type: 3}
       propertyPath: m_LocalPosition.z
