@@ -54,12 +54,13 @@ public class PlatformPuzzle : MonoBehaviour
         {
             for(int c = 0; c < platforms[r].row.Count; c++)
             {
+                if (platforms[r].row[c] == null) continue;
                 if (platforms[r].row[c].Equals(platform))
                 {
-                    if (r - 1 >= 0 && !platforms[r - 1].row[c].hasCube()) platforms[r - 1].row[c].highlight();
-                    if (r + 1 < platforms.Count && !platforms[r + 1].row[c].hasCube()) platforms[r + 1].row[c].highlight();
-                    if (c - 1 >= 0 && !platforms[r].row[c-1].hasCube()) platforms[r].row[c-1].highlight();
-                    if (c + 1 < platforms[r].row.Count && !platforms[r].row[c+1].hasCube()) platforms[r].row[c+1].highlight();
+                    if (r - 1 >= 0 && platforms[r - 1].row[c]!= null && !platforms[r - 1].row[c].hasCube()) platforms[r - 1].row[c].highlight();
+                    if (r + 1 < platforms.Count && platforms[r + 1].row[c] != null && !platforms[r + 1].row[c].hasCube()) platforms[r + 1].row[c].highlight();
+                    if (c - 1 >= 0 && platforms[r].row[c-1] != null && !platforms[r].row[c-1].hasCube()) platforms[r].row[c-1].highlight();
+                    if (c + 1 < platforms[r].row.Count && platforms[r].row[c+1] != null && !platforms[r].row[c+1].hasCube()) platforms[r].row[c+1].highlight();
                 }
             }
         }
@@ -73,15 +74,16 @@ public class PlatformPuzzle : MonoBehaviour
         {
             for (int c = 0; c < platforms[r].row.Count; c++)
             {
+                if (platforms[r].row[c] == null) continue;
                 if (platforms[r].row[c].Equals(platform))
                 {
-                    if (r - 1 >= 0 && platforms[r - 1].row[c].hasCube() && platforms[r - 1].row[c].cube.checkIfSelected()) // down
+                    if (r - 1 >= 0 && platforms[r - 1].row[c] != null && platforms[r - 1].row[c].hasCube() && platforms[r - 1].row[c].cube.checkIfSelected()) // down
                         platforms[r - 1].row[c].cube.moveCube(platform.transform.position.x, platform.transform.position.y + .35f, platform.transform.position.z, platform);
-                    if (r + 1 < platforms.Count && platforms[r + 1].row[c].hasCube() && platforms[r + 1].row[c].cube.checkIfSelected()) //up
+                    if (r + 1 < platforms.Count && platforms[r + 1].row[c] != null && platforms[r + 1].row[c].hasCube() && platforms[r + 1].row[c].cube.checkIfSelected()) //up
                         platforms[r + 1].row[c].cube.moveCube(platform.transform.position.x, platform.transform.position.y + .35f, platform.transform.position.z, platform); 
-                    if (c - 1 >= 0 && platforms[r].row[c - 1].hasCube() && platforms[r].row[c - 1].cube.checkIfSelected()) //right
+                    if (c - 1 >= 0 && platforms[r].row[c - 1] != null && platforms[r].row[c - 1].hasCube() && platforms[r].row[c - 1].cube.checkIfSelected()) //right
                         platforms[r].row[c - 1].cube.moveCube(platform.transform.position.x, platform.transform.position.y + .35f, platform.transform.position.z, platform); 
-                    if (c + 1 < platforms[r].row.Count && platforms[r].row[c + 1].hasCube() && platforms[r].row[c + 1].cube.checkIfSelected()) //left
+                    if (c + 1 < platforms[r].row.Count && platforms[r].row[c + 1] != null && platforms[r].row[c + 1].hasCube() && platforms[r].row[c + 1].cube.checkIfSelected()) //left
                         platforms[r].row[c + 1].cube.moveCube(platform.transform.position.x, platform.transform.position.y + .35f, platform.transform.position.z, platform);
                 }
             }
@@ -94,7 +96,7 @@ public class PlatformPuzzle : MonoBehaviour
         {
             for(int i = 0; i < row.row.Count; i++)
             {
-                row.row[i].unhighlight();
+                if(row.row[i] != null)  row.row[i].unhighlight();
             }
         }
     }

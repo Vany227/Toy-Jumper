@@ -14,8 +14,8 @@ public class PuzzleCube : MonoBehaviour
     public CubePlatform cubePlatform;
     private Boolean canMove;
     private Vector3 targetPosition;
-    static private Boolean canClick = true;
-    static private GameObject selectedCube = null;
+    static public Boolean canClick = true;
+    static public GameObject selectedCube = null;
     private float moveSpeed = .03f;
     public AudioClip woodSlideSound;
     private AudioSource blockAudio;
