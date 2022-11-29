@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using UnityEngine.SceneManagement;
-using static UnityEngine.GraphicsBuffer;
-using UnityEngine.Device;
+using System.Collections;
 
 public class CameraController : MonoBehaviour
 {
@@ -31,36 +29,54 @@ public class CameraController : MonoBehaviour
         zoomingOnCube = true;
         if (PuzzleCube.selectedCube != null)
         {
-            Vector3 targetPosition = PuzzleCube.selectedCube.transform.position + new Vector3(0, 0.7f, 0);
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition,movespeed * Time.deltaTime);
-            transform.LookAt(PuzzleCube.selectedCube.transform);
+            Vector3 targetPosition = PuzzleCube.selectedCube.transform.position + new Vector3(0, 3f, 0);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition,movespeed * Time.deltaTime);    
             
-            
-            if (Vector3.Distance(targetPosition, this.transform.position) < 0.3)
+            if (Vector3.Distance(targetPosition, this.transform.position) < 0.05)
             {
-                zoomingOnCube = false;
-                //SceneManager.LoadScene("Title Screen");          
+                zoomingOnCube = false;      
             }
         }
     }
 
 
+    private static float eulerToDegree(float angle)
+    {
+        angle %= 360;
+        if (angle > 180)
+            return angle - 360;
+        return angle;
+    }
+
+
+    IEnumerator RotateImage()
+    {
+        //default rotation of puzzle is (90, 0, -180)
+        Vector3 targetRot = new Vector3(90, eulerToDegree(PuzzleCube.selectedCube.transform.eulerAngles.y), -180);
+        while (Vector3.Distance(transform.eulerAngles, targetRot) > 0.01f)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetRot), 0.01f * Time.deltaTime);
+            yield return null;
+        }
+        transform.rotation = Quaternion.Euler(targetRot);
+        yield return null;
+    }
+
+
+    Boolean rotateCamera = false;
+
+
     void Update()
     {
         //Moving camera for 2d switch
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             zoomingOnCube = true;
+            rotateCamera = true;
             PuzzleCube.canClick = false;
-
-            //Start fade to black
-            Color fixedColor = Color.black;
-            fixedColor.a = 1;
-            image.color = fixedColor;
-            image.CrossFadeAlpha(0f, 0f, true);
-            image.CrossFadeAlpha(1f, 2.1f, false);
         }
 
+        if (rotateCamera) StartCoroutine(RotateImage());
         if (zoomingOnCube) zoom();
 
 
