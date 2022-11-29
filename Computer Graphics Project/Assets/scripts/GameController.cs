@@ -34,7 +34,7 @@ public class GameController : MonoBehaviour
 
                     if (currentScreen.GetComponent<ScreenController>().startingScreen)
                     {
-                        Startposition.Set(Startposition.x + 16, Startposition.y + 16, -30);
+                        Startposition.Set(Startposition.x, Startposition.y, 0);
                         Camera.position = Startposition;
                     }
                 }

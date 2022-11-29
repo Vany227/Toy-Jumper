@@ -39,7 +39,7 @@ public class CameraController : MonoBehaviour
             if (Vector3.Distance(targetPosition, this.transform.position) < 0.3)
             {
                 zoomingOnCube = false;
-                SceneManager.LoadScene("Title Screen");          
+                //SceneManager.LoadScene("Title Screen");          
             }
         }
     }
