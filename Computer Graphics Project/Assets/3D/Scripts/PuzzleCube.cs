@@ -36,7 +36,6 @@ public class PuzzleCube : MonoBehaviour
     {
         checkIfSelected();
         cubeMovement();
-        
     }
 
     void cubeMovement()

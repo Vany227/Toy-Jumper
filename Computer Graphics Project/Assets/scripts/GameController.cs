@@ -1,10 +1,64 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Unity.VisualScripting;
 
+//singleton class 
 public class GameController : MonoBehaviour
 {
+    private static GameController _instance;
+    public static GameController Instance { get { return _instance; } }
+
+    public bool in3dState;
+
+    [SerializeField]
+    PlatformPuzzle puzzle;
+    [SerializeField]
+    CameraController cam;
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
+
+    private void Start()
+    {
+        in3dState = true;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (in3dState && PuzzleCube.selectedCube != null) //if in 3d, switch to 2d if theres a selected  cube
+            {
+                in3dState = false;
+                PuzzleCube.canClick = false;
+                puzzle.unhighlightPuzzle();
+                cam.switchTo2d();
+            }
+            else //if in 2d, switch back to 3d
+            {
+                cam.switchTo3d();
+            }
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    /*
     private Vector3 Startposition;
     private Vector3Int startingPOS = new Vector3Int(0, 0, 0);
     private Grid grid;
@@ -14,6 +68,7 @@ public class GameController : MonoBehaviour
     public List<Transform> screens = new List<Transform>();
     public Type m_type;
     public Transform Camera;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,4 +103,5 @@ public class GameController : MonoBehaviour
     {
         
     }
+    */
 }

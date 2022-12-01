@@ -12,15 +12,11 @@ public class PlatformRow
 
 public class PlatformPuzzle : MonoBehaviour
 {
-    /// </summary>
     [SerializeField]
     List<PlatformRow> platforms = new List<PlatformRow>();
-
     static private GameObject currentPuzzle;
-
     [SerializeField]
     private float RotationSpeed = 1.5f;
-
     private Vector3 pivot;
 
     private void Start()
@@ -35,10 +31,11 @@ public class PlatformPuzzle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameController.Instance.in3dState) return;
         if (this.gameObject != currentPuzzle) unhighlightPuzzle();
         if (Input.GetMouseButton(0))
         {
-            transform.Rotate(0, (Input.GetAxis("Mouse X") * -RotationSpeed), 0, Space.World);
+            transform.Rotate(0, (Input.GetAxis("Mouse X") * -RotationSpeed), 0, Space.World); //rotate puzzle
         }
     }
 

@@ -18,8 +18,7 @@ public class CubePlatform : MonoBehaviour
         cube = this.GetComponentInChildren<PuzzleCube>();
         platformPuzzle = this.GetComponentInParent<PlatformPuzzle>();
         meshRenderer = this.GetComponent<MeshRenderer>();
-        defaultColor = meshRenderer.material.color;
-        
+        defaultColor = meshRenderer.material.color; 
     }
 
     // Update is called once per frame

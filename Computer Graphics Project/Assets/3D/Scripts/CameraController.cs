@@ -14,21 +14,59 @@ public class CameraController : MonoBehaviour
     private int maxY = 8;
     private int movespeed = 4;
     Boolean zoomingOnCube = false;
+    Boolean rotatingCamera = false;
+    Boolean zoomingOutOfCube = false; 
     PerspectiveToOrtho perspectiveToOrtho;
-
+    Vector3 previous3DPosition;
     Matrix4x4 orthoMatrix;
     Matrix4x4 perspectiveMatrix;
 
-
+    
     private void Start()
     {
         transform.LookAt(puzzle.transform);
         perspectiveToOrtho = GetComponent<PerspectiveToOrtho>();
     }
 
-    private void zoom()
+    void Update()
     {
+        if (zoomingOutOfCube) zoomOut();
+        if (zoomingOnCube) zoomIn();
+        if (zoomingOnCube || rotatingCamera) return;
+        if (GameController.Instance.in3dState) panCamera();
+    }
+
+    public void switchTo2d()
+    {
+        //Save position so we can go back to it when we switch out of 2d back to 3d
+        previous3DPosition = transform.position;
         zoomingOnCube = true;
+        rotatingCamera = true;
+        StartCoroutine(rotateCamera());
+        setOrthographic();
+    }
+
+    public void switchTo3d()
+    {
+        setPerspective();
+        zoomingOutOfCube = true;
+    }
+
+    private void zoomOut()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, previous3DPosition, movespeed * Time.deltaTime);
+        transform.LookAt(puzzle.transform);
+        if (Vector3.Distance(previous3DPosition, this.transform.position) < 0.05)
+        {
+            PuzzleCube.canClick = true;
+            GameController.Instance.in3dState = true;
+            zoomingOutOfCube = false;
+        } 
+    }
+
+    //Zoom camera in from 3d to be above cube
+    private void zoomIn()
+    {
         if (PuzzleCube.selectedCube != null)
         {
             Vector3 targetPosition = PuzzleCube.selectedCube.transform.position + new Vector3(0, 3f, 0);
@@ -49,22 +87,19 @@ public class CameraController : MonoBehaviour
         return angle;
     }
 
-    IEnumerator RotateImage(Action callback)
+    IEnumerator rotateCamera()
     {
         //default rotation of puzzle is (90, 0, -180)
         Vector3 targetRot = new Vector3(90, eulerToDegree(PuzzleCube.selectedCube.transform.eulerAngles.y), -180);
-        //eulerToDegree(transform.eulerAngles.z) != 0
         while (true)
         {
-            
-            Debug.Log(eulerToDegree(transform.eulerAngles.z));
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetRot), 2f * Time.deltaTime);
             yield return null;
             if (eulerToDegree(transform.eulerAngles.z) == 0) break;
         }
-        if(callback != null) setOrthographic(); 
     }
 
+    //Capture projection matrices for perspective/ortho change
     private void setOrthographic()
     {
         Camera cam = GetComponent<Camera>();
@@ -73,43 +108,29 @@ public class CameraController : MonoBehaviour
         orthoMatrix = cam.projectionMatrix;
         cam.orthographic = false;
         perspectiveToOrtho.BlendToMatrix(orthoMatrix, 1);
+        rotatingCamera = false;
     }
 
-    Boolean rotateCamera = false;
-
-
-    void Update()
+    private void setPerspective()
     {
-        //Moving camera for 2d switch
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            zoomingOnCube = true;
-            rotateCamera = true;
-            PuzzleCube.canClick = false;
-        }
+        perspectiveToOrtho.BlendToMatrix(perspectiveMatrix, 1);
+    }
 
-        if (rotateCamera)
-        {
-            rotateCamera = false;
-            StartCoroutine(RotateImage(setOrthographic));
-        }
-        
-        if (zoomingOnCube) zoom();
-
-
-        //Panning/Rotation
+    
+    //Panning/Rotation for camera
+    private void panCamera()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             dragOrigin = Input.mousePosition;
             return;
         }
-
         if (!Input.GetMouseButton(0)) return;
 
-        if (!zoomingOnCube && Input.GetAxis("Mouse Y") != 0)
+        if (Input.GetAxis("Mouse Y") != 0)
         {
             Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
-            Vector3 move = new Vector3(0, pos.y * -1,0);
+            Vector3 move = new Vector3(0, pos.y * -1, 0);
 
 
             transform.Translate(move, Space.World);
