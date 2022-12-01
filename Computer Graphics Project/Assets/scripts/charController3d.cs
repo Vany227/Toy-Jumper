@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character_Controller : MonoBehaviour
+public class charController3d : MonoBehaviour
 {
-
-    private Rigidbody2D rb;
+    private Rigidbody rb;
     public float jump_height;
     public Collider2D wall;
     private bool onWall = false;
@@ -13,10 +12,11 @@ public class Character_Controller : MonoBehaviour
     private bool onGround = false;
     private float dirX;
     private float speed = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -46,36 +46,6 @@ public class Character_Controller : MonoBehaviour
         if (Input.GetButtonDown("Jump") && onGround)
         {
             rb.velocity = new Vector2(rb.velocity.x, jump_height);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("collision enter");
-        if (collision.gameObject.name == "Ground")
-        {
-            
-            onGround = true;
-        }
-
-        if (collision.gameObject.name == "walls")
-        {
-            onWall = true;
-            wallDirection = dirX;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        Debug.Log("collision exit");
-        if (collision.gameObject.name == "Ground")
-        {
-            onGround = false;
-        }
-
-        if (collision.gameObject.name == "walls")
-        {
-            onWall = false;
         }
     }
 }

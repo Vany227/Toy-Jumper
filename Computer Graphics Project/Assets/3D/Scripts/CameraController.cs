@@ -12,16 +12,18 @@ public class CameraController : MonoBehaviour
     private int minY = 1;
     [SerializeField]
     private int maxY = 8;
-    private int movespeed = 3;
+    private int movespeed = 4;
     Boolean zoomingOnCube = false;
+    PerspectiveToOrtho perspectiveToOrtho;
 
-    [SerializeField]
-    private Image image;
-    
+    Matrix4x4 orthoMatrix;
+    Matrix4x4 perspectiveMatrix;
+
 
     private void Start()
     {
         transform.LookAt(puzzle.transform);
+        perspectiveToOrtho = GetComponent<PerspectiveToOrtho>();
     }
 
     private void zoom()
@@ -39,7 +41,6 @@ public class CameraController : MonoBehaviour
         }
     }
 
-
     private static float eulerToDegree(float angle)
     {
         angle %= 360;
@@ -48,20 +49,31 @@ public class CameraController : MonoBehaviour
         return angle;
     }
 
-
-    IEnumerator RotateImage()
+    IEnumerator RotateImage(Action callback)
     {
         //default rotation of puzzle is (90, 0, -180)
         Vector3 targetRot = new Vector3(90, eulerToDegree(PuzzleCube.selectedCube.transform.eulerAngles.y), -180);
-        while (Vector3.Distance(transform.eulerAngles, targetRot) > 0.01f)
+        //eulerToDegree(transform.eulerAngles.z) != 0
+        while (true)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetRot), 0.01f * Time.deltaTime);
+            
+            Debug.Log(eulerToDegree(transform.eulerAngles.z));
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetRot), 2f * Time.deltaTime);
             yield return null;
+            if (eulerToDegree(transform.eulerAngles.z) == 0) break;
         }
-        transform.rotation = Quaternion.Euler(targetRot);
-        yield return null;
+        if(callback != null) setOrthographic(); 
     }
 
+    private void setOrthographic()
+    {
+        Camera cam = GetComponent<Camera>();
+        perspectiveMatrix = cam.projectionMatrix;
+        cam.orthographic = true;
+        orthoMatrix = cam.projectionMatrix;
+        cam.orthographic = false;
+        perspectiveToOrtho.BlendToMatrix(orthoMatrix, 1);
+    }
 
     Boolean rotateCamera = false;
 
@@ -76,7 +88,12 @@ public class CameraController : MonoBehaviour
             PuzzleCube.canClick = false;
         }
 
-        if (rotateCamera) StartCoroutine(RotateImage());
+        if (rotateCamera)
+        {
+            rotateCamera = false;
+            StartCoroutine(RotateImage(setOrthographic));
+        }
+        
         if (zoomingOnCube) zoom();
 
 
