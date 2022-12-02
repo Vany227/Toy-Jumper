@@ -32,7 +32,7 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !cam.rotationInProgress)
         {
             if (in3dState && PuzzleCube.selectedCube != null) //if in 3d, switch to 2d if theres a selected  cube
             {
@@ -45,7 +45,6 @@ public class GameController : MonoBehaviour
             {
                 cam.switchTo3d();
             }
-
         }
     }
 

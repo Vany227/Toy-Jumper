@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour
     Quaternion previousRotation;
     Matrix4x4 orthoMatrix;
     Matrix4x4 perspectiveMatrix;
+    public Boolean rotationInProgress = false;
 
     
     private void Start()
@@ -32,12 +33,12 @@ public class CameraController : MonoBehaviour
     {
         if (zoomingOutOfCube) zoomOut();
         if (zoomingOnCube) zoomIn();
-        if (zoomingOnCube || rotatingCamera) return;
         //if (GameController.Instance.in3dState) panCamera();
     }
 
     public void switchTo2d()
     {
+        rotationInProgress = true;
         //Save position so we can go back to it when we switch out of 2d back to 3d
         previous3DPosition = transform.position;
         previousRotation = transform.rotation;
@@ -49,21 +50,21 @@ public class CameraController : MonoBehaviour
 
     public void switchTo3d()
     {
+        rotationInProgress = true;
         setPerspective();
+        StartCoroutine(rotateCameraOut());
         zoomingOutOfCube = true;
     }
 
     private void zoomOut()
     {
         transform.position = Vector3.MoveTowards(transform.position, previous3DPosition, movespeed * Time.deltaTime);
-        transform.LookAt(puzzle.transform);
         if (Vector3.Distance(previous3DPosition, this.transform.position) < 0.05)
         {
             PuzzleCube.canClick = true;
             GameController.Instance.in3dState = true;
             zoomingOutOfCube = false;
-            transform.rotation = previousRotation;
-        } 
+        }
     }
 
     //Zoom camera in from 3d to be above cube
@@ -89,16 +90,27 @@ public class CameraController : MonoBehaviour
         return angle;
     }
 
+    IEnumerator rotateCameraOut()
+    {
+        while (true)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, previousRotation, 2f * Time.deltaTime);
+            yield return null;
+            if (Quaternion.Angle(transform.rotation, previousRotation) <= 0.01f) break;
+        }
+        rotationInProgress = false;
+    }
+
     IEnumerator rotateCamera()
     {
-        //default rotation of puzzle is (90, 0, -180)
         Vector3 targetRot = new Vector3(180, eulerToDegree(PuzzleCube.selectedCube.transform.eulerAngles.y), -180);
         while (true)
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetRot), 2f * Time.deltaTime);
             yield return null;
-            if (eulerToDegree(transform.eulerAngles.z) == 0) break;
+            if (Quaternion.Angle(transform.rotation, Quaternion.Euler(targetRot)) <= 0.01f) break;
         }
+        rotationInProgress = false;
     }
 
     //Capture projection matrices for perspective/ortho change
@@ -115,7 +127,7 @@ public class CameraController : MonoBehaviour
 
     private void setPerspective()
     {
-        perspectiveToOrtho.BlendToMatrix(perspectiveMatrix, 1);
+        perspectiveToOrtho.BlendToMatrix(perspectiveMatrix, 1.5f);
     }
 
     
