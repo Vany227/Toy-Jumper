@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
     
     private void Start()
     {
-        transform.LookAt(puzzle.transform);
+        //transform.LookAt(puzzle.transform);
         perspectiveToOrtho = GetComponent<PerspectiveToOrtho>();
     }
 
@@ -33,7 +33,7 @@ public class CameraController : MonoBehaviour
         if (zoomingOutOfCube) zoomOut();
         if (zoomingOnCube) zoomIn();
         if (zoomingOnCube || rotatingCamera) return;
-        if (GameController.Instance.in3dState) panCamera();
+        //if (GameController.Instance.in3dState) panCamera();
     }
 
     public void switchTo2d()
@@ -69,7 +69,7 @@ public class CameraController : MonoBehaviour
     {
         if (PuzzleCube.selectedCube != null)
         {
-            Vector3 targetPosition = PuzzleCube.selectedCube.transform.position + new Vector3(0, 3f, 0);
+            Vector3 targetPosition = PuzzleCube.selectedCube.transform.position + new Vector3(0, 0, -3f);
             transform.position = Vector3.MoveTowards(transform.position, targetPosition,movespeed * Time.deltaTime);    
             
             if (Vector3.Distance(targetPosition, this.transform.position) < 0.05)
@@ -90,7 +90,7 @@ public class CameraController : MonoBehaviour
     IEnumerator rotateCamera()
     {
         //default rotation of puzzle is (90, 0, -180)
-        Vector3 targetRot = new Vector3(90, eulerToDegree(PuzzleCube.selectedCube.transform.eulerAngles.y), -180);
+        Vector3 targetRot = new Vector3(180, eulerToDegree(PuzzleCube.selectedCube.transform.eulerAngles.y), -180);
         while (true)
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetRot), 2f * Time.deltaTime);
