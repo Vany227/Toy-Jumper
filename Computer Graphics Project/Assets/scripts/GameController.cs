@@ -50,14 +50,6 @@ public class GameController : MonoBehaviour
     }
 
 
-
-
-
-
-
-
-
-
     /*
     private Vector3 Startposition;
     private Vector3Int startingPOS = new Vector3Int(0, 0, 0);

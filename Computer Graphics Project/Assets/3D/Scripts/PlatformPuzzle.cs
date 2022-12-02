@@ -15,8 +15,6 @@ public class PlatformPuzzle : MonoBehaviour
     [SerializeField]
     List<PlatformRow> platforms = new List<PlatformRow>();
     static private GameObject currentPuzzle;
-    [SerializeField]
-    private float RotationSpeed = 1.5f;
     private Vector3 pivot;
 
     private void Start()
@@ -33,10 +31,6 @@ public class PlatformPuzzle : MonoBehaviour
     {
         if (!GameController.Instance.in3dState) return;
         if (this.gameObject != currentPuzzle) unhighlightPuzzle();
-        if (Input.GetMouseButton(0))
-        {
-            transform.Rotate(0, 0, (Input.GetAxis("Mouse X") * -RotationSpeed), Space.World); //rotate puzzle
-        }
     }
 
     /// <summary>

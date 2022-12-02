@@ -18,13 +18,13 @@ public class CameraController : MonoBehaviour
     Boolean zoomingOutOfCube = false; 
     PerspectiveToOrtho perspectiveToOrtho;
     Vector3 previous3DPosition;
+    Quaternion previousRotation;
     Matrix4x4 orthoMatrix;
     Matrix4x4 perspectiveMatrix;
 
     
     private void Start()
     {
-        //transform.LookAt(puzzle.transform);
         perspectiveToOrtho = GetComponent<PerspectiveToOrtho>();
     }
 
@@ -40,6 +40,7 @@ public class CameraController : MonoBehaviour
     {
         //Save position so we can go back to it when we switch out of 2d back to 3d
         previous3DPosition = transform.position;
+        previousRotation = transform.rotation;
         zoomingOnCube = true;
         rotatingCamera = true;
         StartCoroutine(rotateCamera());
@@ -61,6 +62,7 @@ public class CameraController : MonoBehaviour
             PuzzleCube.canClick = true;
             GameController.Instance.in3dState = true;
             zoomingOutOfCube = false;
+            transform.rotation = previousRotation;
         } 
     }
 
