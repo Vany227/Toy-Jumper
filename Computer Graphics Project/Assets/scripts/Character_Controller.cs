@@ -23,7 +23,7 @@ public class Character_Controller : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (gameController.in3dState == true)
         {
@@ -62,10 +62,10 @@ public class Character_Controller : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("collision enter");
+        
         if (collision.gameObject.name == "Ground")
         {
-            
+            Debug.Log("collision enter");
             onGround = true;
         }
 

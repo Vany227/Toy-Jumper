@@ -90,12 +90,17 @@ public class CameraController : MonoBehaviour
     IEnumerator rotateCamera()
     {
         //default rotation of puzzle is (90, 0, -180)
-        Vector3 targetRot = new Vector3(180, eulerToDegree(PuzzleCube.selectedCube.transform.eulerAngles.y), -180);
+        //Vector3 targetRot = new Vector3(180, eulerToDegree(PuzzleCube.selectedCube.transform.eulerAngles.y), -180);
+
+        //target rot = 0, 0, z
+        Debug.Log(eulerToDegree(PuzzleCube.selectedCube.transform.eulerAngles.x));
+        //Vector3 targetRot = new Vector3(0, 0, eulerToDegree(PuzzleCube.selectedCube.transform.eulerAngles.x));
+        Vector3 targetRot = Vector3.zero;
         while (true)
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetRot), 2f * Time.deltaTime);
             yield return null;
-            if (eulerToDegree(transform.eulerAngles.z) == 0) break;
+            if (Math.Abs(eulerToDegree(transform.eulerAngles.z)) < 0.1f) break;
         }
     }
 

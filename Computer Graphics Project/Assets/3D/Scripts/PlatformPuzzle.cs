@@ -18,6 +18,7 @@ public class PlatformPuzzle : MonoBehaviour
     [SerializeField]
     private float RotationSpeed = 1.5f;
     private Vector3 pivot;
+    Quaternion startRotation;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class PlatformPuzzle : MonoBehaviour
         foreach (Transform child in transform)
             child.transform.position += offset;
         transform.position = pivot;
+        startRotation = transform.rotation;
     }
 
     // Update is called once per frame
@@ -86,6 +88,28 @@ public class PlatformPuzzle : MonoBehaviour
                 }
             }
         }
+    }
+
+    private static float eulerToDegree(float angle)
+    {
+        angle %= 360;
+        if (angle > 180)
+            return angle - 360;
+        return angle;
+    }
+
+    public IEnumerator rotateIt()
+    {
+        //Vector3 targetRot = new Vector3(0, 0, eulerToDegree(PuzzleCube.selectedCube.transform.eulerAngles.x));
+        Vector3 targetRot = new Vector3(90, 180, 0);
+        while (true)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetRot), 2f * Time.deltaTime);
+            yield return null;
+            //if (eulerToDegree(transform.eulerAngles.z) == 0) break;
+            if (eulerToDegree(transform.eulerAngles.z) == 0) break;
+        }
+        //GameController.Instance.turnOn2dPhysics();
     }
 
     public void unhighlightPuzzle()

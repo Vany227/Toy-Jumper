@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 //singleton class 
@@ -12,6 +13,10 @@ public class GameController : MonoBehaviour
     PlatformPuzzle puzzle;
     [SerializeField]
     CameraController cam;
+
+    Rigidbody2D[] twoDimensionalObjs;
+    [SerializeField]
+    Character_Controller player;
 
     private void Awake()
     {
@@ -28,6 +33,8 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         in3dState = true;
+        twoDimensionalObjs = FindObjectsOfType<Rigidbody2D>();
+        turnOff2dPhysics();
     }
 
     private void Update()
@@ -40,21 +47,35 @@ public class GameController : MonoBehaviour
                 PuzzleCube.canClick = false;
                 puzzle.unhighlightPuzzle();
                 cam.switchTo2d();
+                puzzle.StartCoroutine(puzzle.rotateIt());
             }
             else //if in 2d, switch back to 3d
             {
-                cam.switchTo3d();
+                turnOff2dPhysics();
+                cam.switchTo3d();    
             }
-
         }
+        if (Input.GetKeyDown(KeyCode.J)) turnOn2dPhysics();
     }
 
-
-
-
-
-
-
+    public void turnOn2dPhysics()
+    {
+        foreach (Rigidbody2D obj in twoDimensionalObjs)
+        {
+            obj.bodyType = RigidbodyType2D.Static;
+            obj.simulated = true;
+        }
+        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic; //player needs to be dynamic
+    }
+    
+    public void turnOff2dPhysics()
+    {
+        foreach (Rigidbody2D obj in twoDimensionalObjs)
+        {
+            obj.simulated = false;
+            obj.isKinematic = true;
+        }
+    }
 
 
 
