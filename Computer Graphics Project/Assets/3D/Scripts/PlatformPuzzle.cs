@@ -37,7 +37,7 @@ public class PlatformPuzzle : MonoBehaviour
         if (this.gameObject != currentPuzzle) unhighlightPuzzle();
         if (Input.GetMouseButton(0))
         {
-            transform.Rotate(0, 0, (Input.GetAxis("Mouse X") * -RotationSpeed), Space.World); //rotate puzzle
+            //transform.Rotate(0, 0, (Input.GetAxis("Mouse X") * -RotationSpeed), Space.World); //rotate puzzle
         }
     }
 

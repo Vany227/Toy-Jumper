@@ -48,6 +48,7 @@ public class GameController : MonoBehaviour
                 puzzle.unhighlightPuzzle();
                 cam.switchTo2d();
                 puzzle.StartCoroutine(puzzle.rotateIt());
+                turnOn2dPhysics();
             }
             else //if in 2d, switch back to 3d
             {

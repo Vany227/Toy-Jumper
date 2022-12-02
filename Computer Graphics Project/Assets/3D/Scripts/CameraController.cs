@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour
     Vector3 previous3DPosition;
     Matrix4x4 orthoMatrix;
     Matrix4x4 perspectiveMatrix;
-
+    float RotationSpeed = 2f;
     
     private void Start()
     {
