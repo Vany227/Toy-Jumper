@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -289,6 +289,7 @@ MonoBehaviour:
   puzzle: {fileID: 1354931199}
   minY: 1
   maxY: 8
+  rotationInProgress: 0
 --- !u!114 &336805657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,8 +642,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec1c62d4ef93f24891ff631c8cfaf64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jump_height: 0
-  wall: {fileID: 0}
 --- !u!65 &676789022
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -746,7 +745,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &677052052
 MonoBehaviour:
   m_ObjectHideFlags: 0

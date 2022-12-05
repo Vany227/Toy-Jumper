@@ -7,7 +7,7 @@ public class Character_Controller : MonoBehaviour
     public GameController gameController;
 
     public Rigidbody2D rb;
-    RigidbodyConstraints pos;
+    RigidbodyConstraints2D pos;
     public float jump_height;
     public Collider2D wall;
     private bool onWall = false;
@@ -19,7 +19,7 @@ public class Character_Controller : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        //gameController = GetComponent<GameController>();
+        pos = RigidbodyConstraints2D.FreezeRotation;
     }
 
     // Update is called once per frame
@@ -27,8 +27,8 @@ public class Character_Controller : MonoBehaviour
     {
         if (gameController.in3dState == true)
         {
-            pos = RigidbodyConstraints.FreezeRotation;
-            pos = RigidbodyConstraints.FreezePosition;
+            pos = RigidbodyConstraints2D.FreezeRotation;
+            pos = RigidbodyConstraints2D.FreezePosition;
         }
         else
         {

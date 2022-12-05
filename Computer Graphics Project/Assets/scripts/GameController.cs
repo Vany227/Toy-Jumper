@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //singleton class 
 public class GameController : MonoBehaviour
@@ -45,6 +46,11 @@ public class GameController : MonoBehaviour
             {
                 cam.switchTo3d();
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SceneManager.LoadScene("Title Screen");
         }
     }
 
