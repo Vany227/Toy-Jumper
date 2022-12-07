@@ -75,25 +75,29 @@ public class Character_Controller : MonoBehaviour
                     game_matrix = collision.gameObject.GetComponentInParent<Transform>().GetComponentInParent<Transform>().GetComponentInParent<Transform>().GetComponentInParent<Transform>().GetComponentInParent<GameController>().game_matrix;
                     this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - GameGrid.cellGap.y - 3.1f, this.transform.position.z);
                     this.currentScreen = game_matrix[this.currentScreen.GetComponent<ScreenController>().GridX, this.currentScreen.GetComponent<ScreenController>().GridY - 1];
-                    Camera.GetComponent<CameraControl>().UpdateScreen();
+                    Camera.GetComponent<CameraControl>().UpdateOrthoScreen();
+                    StartCoroutine(Camera.GetComponent<CameraControl>().panCamera(Camera.GetComponent<CameraControl>().orthographicTransform.position, 10f));
                     break;
                 case "Top Side":
                     game_matrix = collision.gameObject.GetComponentInParent<Transform>().GetComponentInParent<Transform>().GetComponentInParent<Transform>().GetComponentInParent<Transform>().GetComponentInParent<GameController>().game_matrix;
                     this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + GameGrid.cellGap.y + 3.1f, this.transform.position.z);
                     this.currentScreen = game_matrix[this.currentScreen.GetComponent<ScreenController>().GridX, this.currentScreen.GetComponent<ScreenController>().GridY + 1];
-                    Camera.GetComponent<CameraControl>().UpdateScreen();
+                    Camera.GetComponent<CameraControl>().UpdateOrthoScreen();
+                    StartCoroutine(Camera.GetComponent<CameraControl>().panCamera(Camera.GetComponent<CameraControl>().orthographicTransform.position, 10f));
                     break;
                 case "Left Side":
                     game_matrix = collision.gameObject.GetComponentInParent<Transform>().GetComponentInParent<Transform>().GetComponentInParent<Transform>().GetComponentInParent<Transform>().GetComponentInParent<GameController>().game_matrix;
                     this.transform.position = new Vector3(this.transform.position.x - GameGrid.cellGap.x - 3.1f, this.transform.position.y, this.transform.position.z);
                     this.currentScreen = game_matrix[this.currentScreen.GetComponent<ScreenController>().GridX - 1, this.currentScreen.GetComponent<ScreenController>().GridY];
-                    Camera.GetComponent<CameraControl>().UpdateScreen();
+                    Camera.GetComponent<CameraControl>().UpdateOrthoScreen();
+                    StartCoroutine(Camera.GetComponent<CameraControl>().panCamera(Camera.GetComponent<CameraControl>().orthographicTransform.position, 10f));
                     break;
                 case "Right Side":
                     game_matrix = collision.gameObject.GetComponentInParent<Transform>().GetComponentInParent<Transform>().GetComponentInParent<Transform>().GetComponentInParent<Transform>().GetComponentInParent<GameController>().game_matrix;
                     this.transform.position = new Vector3(this.transform.position.x + GameGrid.cellGap.x + 3.1f, this.transform.position.y, this.transform.position.z);
                     this.currentScreen = game_matrix[this.currentScreen.GetComponent<ScreenController>().GridX + 1, this.currentScreen.GetComponent<ScreenController>().GridY];
-                    Camera.GetComponent<CameraControl>().UpdateScreen();
+                    Camera.GetComponent<CameraControl>().UpdateOrthoScreen();
+                    StartCoroutine(Camera.GetComponent<CameraControl>().panCamera(Camera.GetComponent<CameraControl>().orthographicTransform.position, 10f));
                     break;
             }
         }

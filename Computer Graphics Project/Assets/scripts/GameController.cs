@@ -30,6 +30,7 @@ public class GameController : MonoBehaviour
         
         switch (m_type){
             case Type.TWOXTWO:
+                Camera.GetComponent<CameraControl>().setUpPerspective2X2();
                 for (int i = 0; i < screens.Count; i++)
                 {
                     Transform currentScreen = screens[i];
@@ -40,9 +41,8 @@ public class GameController : MonoBehaviour
 
                     if (currentScreen.GetComponent<ScreenController>().startingScreen)
                     {
-                        Startposition.Set(Startposition.x + 16, Startposition.y + 16, -30);
-                        Camera.position = Startposition;
                         Player.GetComponent<Character_Controller>().currentScreen = currentScreen;
+                        Camera.GetComponent<CameraControl>().UpdateOrthoScreen();
                     }
                 }
                 break;
