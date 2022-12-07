@@ -20,12 +20,14 @@ public class Character_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.parent = currentScreen;
         rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        transform.parent = currentScreen;
         dirX = Input.GetAxisRaw("Horizontal");
         if (!onWall)
         {

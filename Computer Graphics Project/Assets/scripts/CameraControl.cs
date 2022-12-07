@@ -29,7 +29,7 @@ public class CameraControl : MonoBehaviour
         gridPosY = 0;
         cam = GetComponent<Camera>();
         orthographic = Matrix4x4.Ortho(-16, 16, -16, 16, 0, 100);
-        perspective = Matrix4x4.Perspective(90, ((float)Screen.width * 0.5f) / (float)Screen.height, 0.3f, 300f);
+        perspective = Matrix4x4.Perspective(90, (float)Screen.width / (float)Screen.height, 0.3f, 300f);
         cam.projectionMatrix = perspective;
         orthoOn = false;
         blender = (MatrixBlender)GetComponent(typeof(MatrixBlender));
@@ -99,7 +99,6 @@ public class CameraControl : MonoBehaviour
                 rotating = false;
                 break;
             }
-            Debug.Log(goal);
         }
     }
 
@@ -120,8 +119,8 @@ public class CameraControl : MonoBehaviour
     public void setUpPerspective2X2()
     {
         Vector3 newPos = grid.CellToWorld(new Vector3Int(1, 1, -30));
-        newPos = new Vector3(newPos.x - grid.cellGap.x / 2, newPos.y - grid.cellGap.y / 2, -75);
-        lookatPosition = new Vector3(newPos.x, newPos.y, 0);
+        newPos = new Vector3(newPos.x - grid.cellGap.x / 2 + 1, newPos.y - grid.cellGap.y / 2 + 1, -75);
+        lookatPosition = new Vector3(newPos.x, newPos.y, 41.5f);
         transform.LookAt(lookatPosition);
         transform.position = newPos;
     }

@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     public Type m_type;
     public Transform Camera;
     public Transform Player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +56,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public class c_info
@@ -85,7 +86,8 @@ public class GameController : MonoBehaviour
                 Tilemap currentMap = connectors[j];
                 BoundsInt bounds = currentMap.cellBounds;
                 TileBase[] allTiles = currentMap.GetTilesBlock(bounds);
-                
+
+                currentMap.GetComponent<TilemapRenderer>().enabled = true;
                 for (int x = 0; x < bounds.size.x; x++)
                 {
                     for (int y = 0; y < bounds.size.y; y++)
@@ -170,6 +172,7 @@ public class GameController : MonoBehaviour
                         {
                             connectionInformation[i].screen.GetChild(0).GetChild(0).GetChild(0).GetComponentsInChildren<TilemapRenderer>()[2].enabled = false;
                         }
+
                     }
                 }
             }
@@ -186,6 +189,32 @@ public class GameController : MonoBehaviour
                         }
                     }
                 }
+            }
+        }
+    }
+
+    public void GridUpdate(int origX, int origY, int newX, int newY)
+    {
+        Transform currentPos = game_matrix[origX, origY];
+        Vector3 newPos = grid.CellToWorld(new Vector3Int(newX, newY, -30));
+        StartCoroutine(moveScreen(currentPos, newPos, origX, origY, newX, newY));
+    }
+
+    IEnumerator moveScreen(Transform current, Vector3 next, int origX, int origY, int newX, int newY)
+    {
+        while (true)
+        {
+            current.position = Vector3.MoveTowards(current.position, next, 3f);
+            yield return null;
+            if(current.position == next)
+            {
+                current.GetComponent<ScreenController>().GridX = newX;
+                current.GetComponent<ScreenController>().GridY = newY;
+                game_matrix[newX, newY] = current;
+                game_matrix[origX, origY] = null;
+                ScreenUpdate();
+                Camera.GetComponent<CameraControl>().UpdateOrthoScreen();
+                break;
             }
         }
     }
