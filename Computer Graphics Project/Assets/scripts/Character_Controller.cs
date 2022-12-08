@@ -57,7 +57,7 @@ public class Character_Controller : MonoBehaviour
             isFacingLeft = true;
             Flip();
         }
-        if (cameraControl.orthoOn)
+        if (cameraControl.orthoOn && !dead)
         {
             if (!onWall)
             {
