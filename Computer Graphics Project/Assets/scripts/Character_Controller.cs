@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Character_Controller : MonoBehaviour
 {
-
     private Rigidbody2D rb;
     public float jump_height;
     public Collider2D wall;
@@ -17,9 +17,12 @@ public class Character_Controller : MonoBehaviour
     public Transform currentScreen;
     public Grid GameGrid;
     public Transform Camera;
+    GameController gameController;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameController = GameGrid.GetComponent<GameController>();
         transform.parent = currentScreen;
         rb = GetComponent<Rigidbody2D>();
     }
@@ -49,7 +52,7 @@ public class Character_Controller : MonoBehaviour
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        if (Input.GetButtonDown("Jump") && !onWall)
+        if (Input.GetButtonDown("Jump") && onGround)
         {
             rb.velocity = new Vector2(rb.velocity.x, jump_height);
         }
@@ -68,6 +71,14 @@ public class Character_Controller : MonoBehaviour
             onWall = true;
             wallDirection = dirX;
         }
+        if (collision.gameObject.name == "keys")
+        {
+            Debug.Log("wat");
+            Destroy(collision.gameObject);
+            if(gameController.numKeys-- == 0) {
+                SceneManager.LoadScene("Title Screen");
+            }
+        }
         if (!collision.gameObject.GetComponent<TilemapRenderer>().enabled)
         {
             Transform[,] game_matrix = new Transform[3, 3];
@@ -75,7 +86,7 @@ public class Character_Controller : MonoBehaviour
             {
                 case "Bottom Side":
                     game_matrix = collision.gameObject.GetComponentInParent<Transform>().GetComponentInParent<Transform>().GetComponentInParent<Transform>().GetComponentInParent<Transform>().GetComponentInParent<GameController>().game_matrix;
-                    this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - GameGrid.cellGap.y - 3.1f, this.transform.position.z);
+                    this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - GameGrid.cellGap.y - 4f, this.transform.position.z);
                     this.currentScreen = game_matrix[this.currentScreen.GetComponent<ScreenController>().GridX, this.currentScreen.GetComponent<ScreenController>().GridY - 1];
                     Camera.GetComponent<CameraControl>().UpdateOrthoScreen();
                     StartCoroutine(Camera.GetComponent<CameraControl>().panCamera(Camera.GetComponent<CameraControl>().orthographicTransform.position, 10f));
@@ -85,6 +96,7 @@ public class Character_Controller : MonoBehaviour
                     this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + GameGrid.cellGap.y + 3.1f, this.transform.position.z);
                     this.currentScreen = game_matrix[this.currentScreen.GetComponent<ScreenController>().GridX, this.currentScreen.GetComponent<ScreenController>().GridY + 1];
                     Camera.GetComponent<CameraControl>().UpdateOrthoScreen();
+                    Debug.Log("swag");
                     StartCoroutine(Camera.GetComponent<CameraControl>().panCamera(Camera.GetComponent<CameraControl>().orthographicTransform.position, 10f));
                     break;
                 case "Left Side":
