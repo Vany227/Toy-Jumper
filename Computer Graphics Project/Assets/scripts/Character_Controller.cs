@@ -28,31 +28,36 @@ public class Character_Controller : MonoBehaviour
     void Update()
     {
         transform.parent = currentScreen;
-        dirX = Input.GetAxisRaw("Horizontal");
-        if (!onWall)
+        if (Camera.GetComponent<CameraControl>().orthoOn)
         {
-            rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
+            dirX = Input.GetAxisRaw("Horizontal");
+            if (!onWall)
+            {
+                rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
+            }
+            else if (onWall && onGround)
+            {
+                rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
+            }
+            else if (onWall && (wallDirection > 0 && dirX < 0))
+            {
+                rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
+            }
+            else if (onWall && (wallDirection < 0 && dirX > 0))
+            {
+                rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
+            if (Input.GetButtonDown("Jump") && !onWall)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jump_height);
+            }
         }
-        else if (onWall && onGround)
-        {
-            rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
-        }
-        else if (onWall && (wallDirection > 0 && dirX < 0))
-        {
-            rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
-        }
-        else if (onWall && (wallDirection < 0 && dirX > 0))
-        {
-            rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
-        }
-        else
-        {
-            rb.velocity = new Vector2(0, rb.velocity.y);
-        }
-        if (Input.GetButtonDown("Jump") && !onWall)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jump_height);
-        }
+        
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

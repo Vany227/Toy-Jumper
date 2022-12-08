@@ -9,7 +9,7 @@ public class CameraControl : MonoBehaviour
     private int gridPosX;
     private int gridPosY;
     private Matrix4x4 orthographic, perspective;
-    private bool orthoOn;
+    public bool orthoOn;
     private bool rotating;
     private bool moving;
     private Camera cam;
