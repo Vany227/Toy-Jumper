@@ -23,6 +23,7 @@ public class Character_Controller : MonoBehaviour
     CameraControl cameraControl;
     public bool isFacingLeft;
     public bool spawnFacingLeft;
+    public bool dead = false;
     private Vector2 facingLeft;
 
     // Start is called before the first frame update
@@ -106,10 +107,11 @@ public class Character_Controller : MonoBehaviour
                 SceneManager.LoadScene("Title Screen");
             }
         }
-        if(collision.gameObject.name == "traps")
+        if(collision.gameObject.name == "traps" && dead == false)
         {
+            dead = true;
+            animator.SetBool("isJumping", false);
             animator.SetTrigger("isDead");
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         if (!collision.gameObject.GetComponent<TilemapRenderer>().enabled)
         {
@@ -177,5 +179,10 @@ public class Character_Controller : MonoBehaviour
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
 
+    }
+
+    public void deathReset()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
