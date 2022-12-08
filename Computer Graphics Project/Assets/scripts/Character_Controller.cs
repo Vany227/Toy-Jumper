@@ -9,6 +9,7 @@ using System.Xml;
 public class Character_Controller : MonoBehaviour
 {
     private Rigidbody2D rb;
+    public Animator animator;
     public float jump_height;
     public Collider2D wall;
     private bool onWall = false;
@@ -20,6 +21,9 @@ public class Character_Controller : MonoBehaviour
     public Transform Camera;
     GameController gameController;
     CameraControl cameraControl;
+    public bool isFacingLeft;
+    public bool spawnFacingLeft;
+    private Vector2 facingLeft;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +32,12 @@ public class Character_Controller : MonoBehaviour
         cameraControl = Camera.GetComponent<CameraControl>();
         transform.parent = currentScreen;
         rb = GetComponent<Rigidbody2D>();
+        facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);
+        if (spawnFacingLeft)
+        {
+            transform.localScale = facingLeft;
+            isFacingLeft = true;
+        }
     }
 
     // Update is called once per frame
@@ -35,6 +45,17 @@ public class Character_Controller : MonoBehaviour
     {
         transform.parent = currentScreen;
         dirX = Input.GetAxisRaw("Horizontal");
+        animator.SetFloat("Speed", Mathf.Abs(dirX));
+        if (dirX > 0 && isFacingLeft)
+        {
+            isFacingLeft = false;
+            Flip();
+        }
+        if (dirX < 0 && !isFacingLeft)
+        {
+            isFacingLeft = true;
+            Flip();
+        }
         if (cameraControl.orthoOn)
         {
             if (!onWall)
@@ -59,6 +80,7 @@ public class Character_Controller : MonoBehaviour
             }
             if (Input.GetButtonDown("Jump") && onGround)
             {
+                animator.SetBool("isJumping", true);
                 rb.velocity = new Vector2(rb.velocity.x, jump_height);
             }
         } 
@@ -68,7 +90,7 @@ public class Character_Controller : MonoBehaviour
     {
         if (collision.gameObject.name == "Ground")
         {
-            
+            animator.SetBool("isJumping", false);
             onGround = true;
         }
 
@@ -86,7 +108,8 @@ public class Character_Controller : MonoBehaviour
         }
         if(collision.gameObject.name == "traps")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            animator.SetTrigger("isDead");
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         if (!collision.gameObject.GetComponent<TilemapRenderer>().enabled)
         {
@@ -141,5 +164,18 @@ public class Character_Controller : MonoBehaviour
         {
             onWall = false;
         }
+    }
+
+    protected virtual void Flip()
+    {
+        if (isFacingLeft)
+        {
+            transform.localScale = facingLeft;
+        }
+        if (!isFacingLeft)
+        {
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+        }
+
     }
 }
