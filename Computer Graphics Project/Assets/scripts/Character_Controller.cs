@@ -4,6 +4,7 @@ using UnityEngine.Tilemaps;
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
+using System.Xml;
 
 public class Character_Controller : MonoBehaviour
 {
@@ -18,11 +19,13 @@ public class Character_Controller : MonoBehaviour
     public Grid GameGrid;
     public Transform Camera;
     GameController gameController;
+    CameraControl cameraControl;
 
     // Start is called before the first frame update
     void Start()
     {
         gameController = GameGrid.GetComponent<GameController>();
+        cameraControl = Camera.GetComponent<CameraControl>();
         transform.parent = currentScreen;
         rb = GetComponent<Rigidbody2D>();
     }
@@ -31,9 +34,9 @@ public class Character_Controller : MonoBehaviour
     void Update()
     {
         transform.parent = currentScreen;
-        if (Camera.GetComponent<CameraControl>().orthoOn)
+        dirX = Input.GetAxisRaw("Horizontal");
+        if (cameraControl.orthoOn)
         {
-            dirX = Input.GetAxisRaw("Horizontal");
             if (!onWall)
             {
                 rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
@@ -58,9 +61,7 @@ public class Character_Controller : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, jump_height);
             }
-        }
-        
-        
+        } 
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -78,11 +79,14 @@ public class Character_Controller : MonoBehaviour
         }
         if (collision.gameObject.name == "keys")
         {
-            Debug.Log("wat");
             Destroy(collision.gameObject);
-            if(gameController.numKeys-- == 0) {
+            if(--gameController.numKeys == 0) {
                 SceneManager.LoadScene("Title Screen");
             }
+        }
+        if(collision.gameObject.name == "traps")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         if (!collision.gameObject.GetComponent<TilemapRenderer>().enabled)
         {
