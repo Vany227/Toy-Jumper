@@ -1,6 +1,7 @@
 Toy Jumper
 
 Game Controls
+
 WASD - control the main character when in 2D view (alternatively you can use arrow keys)
 Q - Change from 3D to 2D
 SPACE - Jump when in 3D view
