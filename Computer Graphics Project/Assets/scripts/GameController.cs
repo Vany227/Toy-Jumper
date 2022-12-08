@@ -48,6 +48,23 @@ public class GameController : MonoBehaviour
                     }
                 }
                 break;
+            case Type.THREEXTHREE:
+                Camera.GetComponent<CameraControl>().setUpPerspective3X3();
+                for (int i = 0; i < screens.Count; i++)
+                {
+                    Transform currentScreen = screens[i];
+                    Startposition = grid.CellToWorld(new Vector3Int(currentScreen.GetComponent<ScreenController>().GridX, currentScreen.GetComponent<ScreenController>().GridY, -30));
+                    Startposition.Set(Startposition.x, Startposition.y, currentScreen.position.z);
+                    currentScreen.position = Startposition;
+                    game_matrix[currentScreen.GetComponent<ScreenController>().GridX, currentScreen.GetComponent<ScreenController>().GridY] = currentScreen;
+
+                    if (currentScreen.GetComponent<ScreenController>().startingScreen)
+                    {
+                        Player.GetComponent<Character_Controller>().currentScreen = currentScreen;
+                        Camera.GetComponent<CameraControl>().UpdateOrthoScreen();
+                    }
+                }
+                break;
         }
 
 

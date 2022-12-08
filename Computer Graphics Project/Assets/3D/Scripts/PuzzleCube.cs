@@ -44,14 +44,17 @@ public class PuzzleCube : MonoBehaviour
         if (canMove)
         {
             selectedCube.transform.position = Vector3.MoveTowards(selectedCube.transform.position, targetPosition, moveSpeed);
-            
-            if (selectedCube.transform.position == targetPosition)
+            Debug.Log("currentPos" + selectedCube.transform.position.y);
+            Debug.Log("TargetPos" + targetPosition.y);
+            if (Vector3.Distance(selectedCube.transform.position, targetPosition) < 0.0001)
             {
+                Debug.Log("Kyle");
                 canMove = false;
                 canClick = true;
             }
             else
             {
+                Debug.Log("butts");
                 canClick = false;
             }
         }
@@ -80,6 +83,7 @@ public class PuzzleCube : MonoBehaviour
     public void moveCube(float x, float y, float z, CubePlatform platform)
     {
         targetPosition = new Vector3(x, y, z);
+        Debug.Log(targetPosition);
         canMove = true;
         transform.parent = platform.transform;
         cubePlatform = this.GetComponentInParent<CubePlatform>();
