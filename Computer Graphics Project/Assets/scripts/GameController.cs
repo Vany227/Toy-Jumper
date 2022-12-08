@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     public Type m_type;
     public Transform Camera;
     public Transform Player;
+    public int numKeys;
 
     // Start is called before the first frame update
     void Start()
