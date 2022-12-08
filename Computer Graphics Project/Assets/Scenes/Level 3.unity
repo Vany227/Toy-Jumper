@@ -29197,7 +29197,7 @@ MonoBehaviour:
   m_type: 2
   Camera: {fileID: 1415662660}
   Player: {fileID: 1736740936}
-  numKeys: 12
+  numKeys: 1
 --- !u!156049354 &1986821457
 Grid:
   m_ObjectHideFlags: 0
@@ -71935,11 +71935,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4910431808782923544, guid: bd0da3cbcc2bffb40b08720125c560ed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 66
+      value: 70.8
       objectReference: {fileID: 0}
     - target: {fileID: 4910431808782923544, guid: bd0da3cbcc2bffb40b08720125c560ed, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 77
+      value: 55.8
       objectReference: {fileID: 0}
     - target: {fileID: 4910431808782923544, guid: bd0da3cbcc2bffb40b08720125c560ed, type: 3}
       propertyPath: m_LocalPosition.z
