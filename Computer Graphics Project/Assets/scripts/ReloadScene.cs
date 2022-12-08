@@ -5,10 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class ReloadScene : MonoBehaviour
 {
+    public Animator animator;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+            animator.SetTrigger("isDead");
         }
     }
+
+    //private void ResetLevel() {
+    //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    //}
 }

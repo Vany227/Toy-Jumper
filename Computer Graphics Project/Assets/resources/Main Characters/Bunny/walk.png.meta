@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 49ab065717a089d429a33e9d84a944f5
+guid: a57a37ce8c295754baa614a134c98d4f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -105,190 +105,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DustBunnyDeath_0
+      name: walk_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 960
-        width: 320
-        height: 320
+        y: 96
+        width: 96
+        height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4913d809047dc69409d1baa4d9e0a484
-      internalID: 1033075337
+      spriteID: 4984df978132bf443b738bf54ba26688
+      internalID: -143463961
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DustBunnyDeath_1
+      name: walk_1
       rect:
         serializedVersion: 2
-        x: 320
-        y: 960
-        width: 320
-        height: 320
+        x: 96
+        y: 96
+        width: 96
+        height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b047cb0a4c05f234ba8525e2fda37fbd
-      internalID: 108574923
+      spriteID: 929f981bea1493149b9e32cc3267dff5
+      internalID: 1415344685
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DustBunnyDeath_2
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 960
-        width: 320
-        height: 320
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5095c0ce45e6bce4b9516c0679211862
-      internalID: -2043205483
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DustBunnyDeath_3
+      name: walk_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 640
-        width: 320
-        height: 320
+        y: 0
+        width: 96
+        height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36d17cb3205493e45b9cccf754464a0d
-      internalID: 1236586017
+      spriteID: 7874d0381b07ed946a321f8c17d9d6b6
+      internalID: -564705531
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DustBunnyDeath_4
+      name: walk_3
       rect:
         serializedVersion: 2
-        x: 320
-        y: 640
-        width: 320
-        height: 320
+        x: 96
+        y: 0
+        width: 96
+        height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6e3053d95e79fd408c9a8e5f75687a5
-      internalID: 1874781487
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DustBunnyDeath_5
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 640
-        width: 320
-        height: 320
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 62f50fae96c49e3439e9c092c6031102
-      internalID: 959481412
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DustBunnyDeath_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 320
-        width: 320
-        height: 320
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0d795915948c641488d22e3bd337c25b
-      internalID: -1960512748
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DustBunnyDeath_7
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 320
-        width: 320
-        height: 320
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e36e558582205644ebb6139119f51769
-      internalID: 1536901625
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DustBunnyDeath_8
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 320
-        width: 320
-        height: 320
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0bb155c665afcae42bafbec51dfccd57
-      internalID: -1425976579
+      spriteID: eb76e4aaf53d91b4cbcf0d84d46bdabf
+      internalID: 1742908168
       vertices: []
       indices: 
       edges: []
@@ -296,7 +191,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: acef8327aacd88149ab00e40cfe9f61e
+    spriteID: 86257accda6ccc0438e54375a6fc6a8d
     internalID: 0
     vertices: []
     indices: 
@@ -304,15 +199,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      DustBunnyDeath_1: 108574923
-      DustBunnyDeath_3: 1236586017
-      DustBunnyDeath_2: -2043205483
-      DustBunnyDeath_7: 1536901625
-      DustBunnyDeath_5: 959481412
-      DustBunnyDeath_6: -1960512748
-      DustBunnyDeath_8: -1425976579
-      DustBunnyDeath_0: 1033075337
-      DustBunnyDeath_4: 1874781487
+      walk_3: 1742908168
+      walk_1: 1415344685
+      walk_0: -143463961
+      walk_2: -564705531
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b6ba2692b0248c64d89b713624594dd6
+guid: 018d788b74df9764b9b4a18256d346de
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -105,127 +105,190 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BunnyJump_0
+      name: DustBunnyDeath (1)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbf28e5d3dac5c74c9be1541107459cd
+      internalID: -114765279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DustBunnyDeath (1)_1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 278da4e2f48383c4caeb70a0c5f6312a
+      internalID: 1204871381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DustBunnyDeath (1)_2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1151164771047864baf9b5c74cec4d1f
+      internalID: 144819729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DustBunnyDeath (1)_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1b52b8ba2d15f2478397fe1466879ff
+      internalID: 520114167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DustBunnyDeath (1)_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a017eb9f904f0b54f87b13b62cf615e2
+      internalID: -1896818750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DustBunnyDeath (1)_5
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0317cdb00490d1a449896e95daf0646d
+      internalID: 1954846265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DustBunnyDeath (1)_6
       rect:
         serializedVersion: 2
         x: 0
         y: 96
-        width: 48
-        height: 48
+        width: 96
+        height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a314f0db828b6e043bfcce1927a055d2
-      internalID: 1975398111
+      spriteID: 4abde8270468c1448aaf85a359875c2e
+      internalID: -1520482775
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BunnyJump_1
+      name: DustBunnyDeath (1)_7
       rect:
         serializedVersion: 2
-        x: 48
+        x: 96
         y: 96
-        width: 48
-        height: 48
+        width: 96
+        height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9677b97f2a4ed7459a642bf8bd459ee
-      internalID: 885071223
+      spriteID: ab3ee95a9a5eaa44ea0d927614f2af50
+      internalID: -78345284
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BunnyJump_2
+      name: DustBunnyDeath (1)_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 48
-        width: 48
-        height: 48
+        x: 192
+        y: 96
+        width: 96
+        height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af43713a09d400042b8a8f5bd9b40d1b
-      internalID: 720468469
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BunnyJump_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 48
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e1a00465ba8fc64e814762c8abe4874
-      internalID: 515790014
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BunnyJump_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cfff6f1ea3b5b9f4b98c71c74ea5bc1d
-      internalID: 1442254021
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BunnyJump_5
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7ddf82d59efe54e41834615173496408
-      internalID: -1591027992
+      spriteID: 7113018ad634ef44aaff4ddd732ecf45
+      internalID: 936844643
       vertices: []
       indices: 
       edges: []
@@ -233,7 +296,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ffe0c3c7bff79f54599d3820b8156181
+    spriteID: 05e9ded5a7bec6b468df65d42e1fdbb5
     internalID: 0
     vertices: []
     indices: 
@@ -241,12 +304,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BunnyJump_2: 720468469
-      BunnyJump_3: 515790014
-      BunnyJump_0: 1975398111
-      BunnyJump_4: 1442254021
-      BunnyJump_1: 885071223
-      BunnyJump_5: -1591027992
+      DustBunnyDeath (1)_4: -1896818750
+      DustBunnyDeath (1)_5: 1954846265
+      DustBunnyDeath (1)_6: -1520482775
+      DustBunnyDeath (1)_3: 520114167
+      DustBunnyDeath (1)_2: 144819729
+      DustBunnyDeath (1)_7: -78345284
+      DustBunnyDeath (1)_1: 1204871381
+      DustBunnyDeath (1)_8: 936844643
+      DustBunnyDeath (1)_0: -114765279
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
