@@ -47,6 +47,7 @@ public class Character_Controller : MonoBehaviour
         transform.parent = currentScreen;
         dirX = Input.GetAxisRaw("Horizontal");
         animator.SetFloat("Speed", Mathf.Abs(dirX));
+        animator.SetFloat("Velocity", rb.velocity.y);
         if (dirX > 0 && isFacingLeft)
         {
             isFacingLeft = false;

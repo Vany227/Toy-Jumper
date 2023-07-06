@@ -24,7 +24,6 @@ public class CameraControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
 
 
 
@@ -50,7 +49,6 @@ public class CameraControl : MonoBehaviour
             orthoOn = !orthoOn;
             if (orthoOn)
             {
-
                 Vector3 position = this.GetComponent<Transform>().position;
                 perspectiveTransform.position = position;
                 Quaternion rotation = this.GetComponent<Transform>().rotation;
@@ -63,7 +61,7 @@ public class CameraControl : MonoBehaviour
             {
                 blender.BlendToMatrix(perspective, 1f);
                 StartCoroutine(rotateCamera(perspectiveTransform.rotation));
-                StartCoroutine(panCamera(perspectiveTransform.position, 4f));
+                StartCoroutine(panCamera(perspectiveTransform.position, 4f)); 
             }
                 
         }
@@ -89,12 +87,31 @@ public class CameraControl : MonoBehaviour
             yield return null;
             if (Quaternion.Angle(transform.rotation, goal) <= 0.00001f)
             {
+                transform.rotation = goal;
                 rotating = false;
                 break;
             }
         }
     }
 
+    /*
+    public void resolutionChange(float goalX, float goalY)
+    {
+        changing = true;
+        while (true)
+        {
+            var x = Mathf.Lerp(Screen.width, goalX, 4f * Time.deltaTime);
+            var y = Mathf.Lerp(Screen.height, goalY, 4f * Time.deltaTime);
+            Screen.SetResolution((int)x, (int)y, true);
+            if ( Mathf.Abs(x - goalX)  <= 1f && Mathf.Abs(y - goalY) <= 1f)
+            {
+                Debug.Log("butts");
+                changing = false;
+                break;
+            }
+        }   
+    }
+    */
     public IEnumerator panCamera(Vector3 goal, float speed)
     {
         moving = true;
@@ -104,6 +121,7 @@ public class CameraControl : MonoBehaviour
             yield return null;
             if (Vector3.Distance(transform.position, goal) <= 0.01f)
             {
+                transform.position = goal;
                 moving = false;
                 break;
             }
@@ -117,7 +135,7 @@ public class CameraControl : MonoBehaviour
         gridPosX = 0;
         gridPosY = 0;
         cam = GetComponent<Camera>();
-        orthographic = Matrix4x4.Ortho(-16, 16, -16, 16, 0, 100);
+        orthographic = Matrix4x4.Ortho(-32, 32, -18, 18, 0, 100);
         perspective = Matrix4x4.Perspective(90, (float)Screen.width / (float)Screen.height, 0.3f, 300f);
         cam.projectionMatrix = perspective;
         orthoOn = false;

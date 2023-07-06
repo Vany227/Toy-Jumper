@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour
     {
         mode = Mode.TWOD;
         grid = this.GetComponent<Grid>();
-        
+        Screen.SetResolution(1920, 1080, true);
         
 
         
